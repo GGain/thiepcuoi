@@ -322,16 +322,12 @@ main .invite-customer .invite-frame {
     width: 100%;
 }
 
-.mess-contact .form-group {
-    margin-bottom: 20px;
-}
-
 .mess-contact {
     padding-top: 80px;
 }
 
 #mess-contact {
-    font-family: 'Roboto', sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 #mess-contact .submit {

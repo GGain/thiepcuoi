@@ -1,0 +1,62 @@
+//  Cái sheet hồi nãy mới viết dùng để thu thập thông tin là gì thì điền tên nó vào đây nhé, mình viết vào Sheet1 
+var SHEET_NAME = 'khachmoi';
+var SCRIPT_PROP = PropertiesService.getScriptProperties(); // Tạo new property service
+
+function doGet(e) {
+    return handleResponse(e);
+}
+
+function doPost(e) {
+    return handleResponse(e);
+}
+
+function handleResponse(e) {
+    var lock = LockService.getPublicLock();
+    lock.waitLock(30000);  // wait 30 seconds before conceding defeat.
+  
+    try {
+        // Chọn nơi để lưu data lấy về được (sheet1)
+        var doc = SpreadsheetApp.openById(SCRIPT_PROP.getProperty('key'));
+        var sheet = doc.getSheetByName(SHEET_NAME);
+    
+        // Ở đây định nghĩa tên các input nằm hết trên hàng 1 nhé
+        var headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+        var nextRow = sheet.getLastRow() + 1; // Nhảy sang hàng tiếp theo
+
+        var row = []; 
+        var data;
+        if (e.postData && e.postData.contents) {
+          data = JSON.parse(e.postData.contents);
+        } else {
+          data = e.parameter;
+        }
+        
+        for (var i in headers) {
+          var header = headers[i];
+          if (header == 'Timestamp') {
+            row.push(new Date());
+          } else {
+            // Handle other fields based on headers
+            row.push(data[header]);
+          }
+        }
+        
+        sheet.getRange(nextRow, 1, 1, row.length).setValues([row]);
+  
+        return ContentService
+            .createTextOutput(JSON.stringify(data))
+            .setMimeType(ContentService.MimeType.JSON)
+    } catch(ex) {
+    // Nếu lỗi báo lỗi trả về
+        return ContentService
+            .createTextOutput(JSON.stringify({'result': 'error', 'error-detail': ex.json()}))
+            .setMimeType(ContentService.MimeType.JSON);
+    } finally { //release lock
+        lock.releaseLock();
+    }
+}
+
+function setup() {
+    var doc = SpreadsheetApp.getActiveSpreadsheet();
+    SCRIPT_PROP.setProperty('key', doc.getId());
+}

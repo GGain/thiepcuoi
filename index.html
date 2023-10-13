@@ -8,6 +8,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="Cache-Control" content="no-cache" />
     <meta http-equiv="Expires" content="-1" />
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_parameter_name" th:content="${_csrf.parameterName}"/>
     <meta name="keywords" content="ThiepCuoi" />
     <meta name="format-detection" content="telephone=no" />
 
@@ -123,28 +125,28 @@
                     </div>
                     <div class="bottom-invite"></div>
                     <div class="row mess-contact">
-                        <div class="col-md-6 animated">
+                        <div class="col-md-6 contact-animate animated">
                             <h1>Bạn sẽ đến chứ?</h1>
                             <p>Đám cưới của chúng mình sẽ trọn vẹn hơn khi có thêm lời chúc phúc và sự hiện diện của các bạn.</p>
                             <p>* Bạn vui lòng phản hồi luôn để chúng mình có thể chuẩn bị chu đáo nhất nhé. Chúng mình rất cảm ơn ạ!</p>
                         </div>
                         <div class="col-md-6 form-animate animated">
                             <form id="mess-contact" method="get" action="">
-                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                <div class="form-group">
-                                    <input name="name" type="text" class="form-control" placeholder="Tên của bạn" required>
+                                <!-- <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> -->
+                                <div class="mb-3">
+                                    <input name="hoten" type="text" class="form-control" placeholder="Tên của bạn" required>
                                 </div>
-                                <div class="form-group">
-                                    <input name="phone" type="text" class="form-control" placeholder="Số điện thoại" required>
+                                <div class="mb-3">
+                                    <input name="SDT" type="text" class="form-control" placeholder="Số điện thoại" required>
                                 </div>
-                                <div class="form-group">
+                                <div class="mb-3">
                                     <div class="form-control text-start">
-                                        <input name="feedback" type="radio" id="y" name="fav_language" value="Có">
-                                        <label for="y">Có</label><br>
-                                        <input name="feedback" type="radio" id="n" name="fav_language" value="Không">
-                                        <label for="n">Không</label><br>
-                                        <input name="feedback" type="radio" id="k" name="fav_language" value="Xin lỗi ,tôi bận">
-                                        <label for="k">Xin lỗi, tôi bận mất rồi.</label><br>
+                                        <input name="feedback" type="radio" id="yes" name="fav_language" value="Có">
+                                        <label for="yes">Chắc chắn sẽ tham dự.</label><br>
+                                        <input name="feedback" type="radio" id="no" name="fav_language" value="Không">
+                                        <label for="no">Không thể tham dự.</label><br>
+                                        <input name="feedback" type="radio" id="maybe" name="fav_language" value="Có thể">
+                                        <label for="maybe">Có thể tham dự.</label><br>
                                     </div>
                                 </div>
                                 <button id="submit" class="submit">Phản hồi</button>
@@ -249,19 +251,30 @@
     <script>
         $('#submit').click(function(e) {
             e.preventDefault();
-            var header = $("meta[name='_csrf_header']").attr("content");
-            console.log($('#mess-contact').serializeArray());
-            $.ajax({
-                type: 'post',
-                headers: header,
-                url: 'https://script.google.com/macros/s/AKfycbwxDWsADHuheFTDqxMjZsCTC9PTzFKqZUgoVR9aFyuiScLCEp90R3M9ffWsGoY3J3KH/exec',
-                data: $('#mess-contact').serializeArray(),
-                success: function (data) {
-                    // alert('thành công!');
-                },
-                error: function (data) {
-                    // alert('thất bại!');
-                },
+            const header = $("meta[name='_csrf_header']").attr("content");
+            const formData = $('#mess-contact').serializeArray(); // Get form data as an array of objects
+            var jsonData = {}; // Create an empty JSON object
+
+            // Convert form data to JSON object
+            formData.forEach(function(field) {
+                jsonData[field.name] = field.value;
+            });
+
+            console.log('header', header);
+            console.log(jsonData);
+            
+            const googleWebApp = `https://script.google.com/macros/s/AKfycbzHy4T-T_DoTVhfuVNJjnTwRE0MWWeC_UXY0PSI4UzwZjhxto18Mu-_xzLcaZiehrytCQ/exec`;
+            fetch(googleWebApp, {
+                method: 'post',
+                body: JSON.stringify(jsonData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Response from Apps Script:', data);
+                // Handle the response as needed
+            })
+            .catch(error => {
+                console.error('Error:', error);
             });
         })
         $('.mo-thu').click(function(e) {
