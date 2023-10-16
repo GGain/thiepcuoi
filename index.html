@@ -286,11 +286,11 @@
             $('#main').removeClass('hidden');
             $('#main').addClass('animate__fadeInUp main-position');
             $('#header').addClass('animate__fadeOutUp');
-            $(window).on('load scroll', function(){
+            window.onscroll = function(){
                 if ($(window).scrollTop() > 900) {
                     $('.fixed').removeClass('hidden');
                 }
-            })
+            };
         });
         
         // when the window scroll down to the item, add the animation (ex: 'animate__bounceInLeft') to item.
@@ -301,7 +301,7 @@
             }
         }
 
-        $(window).on('load scroll', function(){
+        window.onscroll =  function() {
             var windowItem = $(window);
             var windowScrolTop = windowItem.scrollTop();
             if(windowScrolTop <= 0){
@@ -320,7 +320,7 @@
             scroll_animate(windowScrolTopHeight, $('.date-invite')      , 'animate__bounceInUp');
             scroll_animate(windowScrolTopHeight, $('.groom-address')    , 'animate__fadeInRight');
             scroll_animate(windowScrolTopHeight, $('.thank-invite')     , 'animate__bounceInUp');
-        })
+        };
     
         // Get the modal
         var modal = document.getElementById("modalpopup_BankInfo");
