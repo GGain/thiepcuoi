@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <title>Thiệp Cưới TenChuRe - TenCoDau</title>
+    <title>Thiệp Cưới $TenChuDe - $TenCoDau</title>
 
     <!-- Meta data for open grahp protocol -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -14,10 +14,11 @@
     <meta name="format-detection" content="telephone=no" />
 
     <meta property="og:url" content="https://ggain.github.io/thiepcuoi/" />
-    <meta property="og:title" content="Thiệp Mời ChuDe - CoDau (30/09 - 01/10/2024)"/>
+    <meta property="og:title" content="Thiệp Mời $TenChuDe - $TenCoDau (30/09 - 01/10/2024)"/>
     <meta property="og:type" content="website" />
     <!--meta property="og:image" content="$AnhDaiDien"/ -->
     <meta property="og:image" content="https://ggain.github.io/thiepcuoi/images/thumbnail.jpg"/>
+    <meta property="og:image:alt" content="Thiệp mời $TenChuDe - $TenCoDau" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
 	<meta property="og:image:type" content="image/jpeg" />
@@ -260,10 +261,13 @@
                 jsonData[field.name] = field.value;
             });
 
+            const googleWebApp = `https://script.google.com/macros/s/AKfycbwYIEEy65TakM1RMSE16SVqi92lY8GdDV2sh6KoMb51VTS8DSBikKMKNgJY7pYvwUMA/exec`;
+            jsonData[`docID`] = `1o9hIVLvWQwUaw5gxAD3Xyd9LX384RIiMBPB1zj3UcVU`;
+            jsonData[`sheetName`] = `khachmoi`;
+
             console.log('header', header);
             console.log(jsonData);
-            
-            const googleWebApp = `https://script.google.com/macros/s/AKfycbzHy4T-T_DoTVhfuVNJjnTwRE0MWWeC_UXY0PSI4UzwZjhxto18Mu-_xzLcaZiehrytCQ/exec`;
+
             fetch(googleWebApp, {
                 method: 'post',
                 body: JSON.stringify(jsonData)

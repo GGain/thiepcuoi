@@ -36,12 +36,14 @@
             var formData = {
                     hoten: document.getElementById('hoten').value,
                     SDT: document.getElementById('SDT').value,
-                    feedback: document.getElementById('feedback').value
+                    feedback: document.getElementById('feedback').value,
+                    docID: `1o9hIVLvWQwUaw5gxAD3Xyd9LX384RIiMBPB1zj3UcVU`,
+                    sheetName: `khachmoi`
                 };
                 return formData;
         }
 
-        const googleWebApp = `https://script.google.com/macros/s/AKfycbzHy4T-T_DoTVhfuVNJjnTwRE0MWWeC_UXY0PSI4UzwZjhxto18Mu-_xzLcaZiehrytCQ/exec`;
+        const googleWebApp = `https://script.google.com/macros/s/AKfycbwYIEEy65TakM1RMSE16SVqi92lY8GdDV2sh6KoMb51VTS8DSBikKMKNgJY7pYvwUMA/exec`;
         document.getElementById('getBtn').addEventListener('click', 
             function (event) {
                 event.preventDefault();
