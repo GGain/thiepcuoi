@@ -190,12 +190,13 @@
             </div>
         </section>
     </main>
-    <div id="fixed" class="fixed hidden animated animate__zoomInRight">
-        <div class="group-fixed">
-            <img class="rotate" src="./images/t1-sticky-outer-20220404145948.svg" loading="lazy">
-            <img class="swing" src="./images/t1-sticky-inner-20220404145927.svg" loading="lazy">
+    <div id="bankInfo" class="fixed col-md-2 col-3 animated animate__zoomInRight">
+        <div class="align-item-middle-center">
+            <img class="rotate" src="./images/mung_cuoi_ngay_1.svg" loading="lazy">
+            <img class="swing" src="./images/mail_1.svg" loading="lazy">
         </div>
     </div>
+
     <!-- The Modal -->
     <div id="modalpopup_BankInfo" class="modal-popup">
 
@@ -231,8 +232,8 @@
             </div>
         </div>
         </div>
-    
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
@@ -284,13 +285,14 @@
         $('.mo-thu').click(function(e) {
             e.preventDefault();
             $('#main').removeClass('hidden');
-            $('#main').addClass('animate__fadeInUp main-position');
             $('#header').addClass('animate__fadeOutUp');
-            window.onscroll = function(){
+            $('#main').addClass('animate__fadeInUp main-position');
+
+            $(window).on('load scroll', function(){
                 if ($(window).scrollTop() > 900) {
                     $('.fixed').removeClass('hidden');
                 }
-            };
+            });
         });
         
         // when the window scroll down to the item, add the animation (ex: 'animate__bounceInLeft') to item.
@@ -301,7 +303,7 @@
             }
         }
 
-        window.onscroll =  function() {
+        function scroll_animates(){
             var windowItem = $(window);
             var windowScrolTop = windowItem.scrollTop();
             if(windowScrolTop <= 0){
@@ -310,23 +312,29 @@
 
             var windowScrolTopHeight = windowScrolTop + windowItem.height();
 
-            scroll_animate(windowScrolTopHeight, $('.img-1')            , 'animate__bounceInLeft');
-            scroll_animate(windowScrolTopHeight, $('.img-2')            , 'animate__bounceInRight');
             scroll_animate(windowScrolTopHeight, $('.title-invite')     , 'animate__bounceInUp');
-            scroll_animate(windowScrolTopHeight, $('.bride-home')       , 'animate__bounceInRight');
-            scroll_animate(windowScrolTopHeight, $('.groom-home')       , 'animate__bounceInLeft');
-            scroll_animate(windowScrolTopHeight, $('.contact-animate')  , 'animate__fadeInUp');
-            scroll_animate(windowScrolTopHeight, $('.form-animate')     , 'animate__fadeInBottomRight');
             scroll_animate(windowScrolTopHeight, $('.date-invite')      , 'animate__bounceInUp');
             scroll_animate(windowScrolTopHeight, $('.groom-address')    , 'animate__fadeInRight');
             scroll_animate(windowScrolTopHeight, $('.thank-invite')     , 'animate__bounceInUp');
-        };
-    
+
+            scroll_animate(windowScrolTopHeight, $('.img-1')            , 'animate__bounceInLeft');
+            scroll_animate(windowScrolTopHeight, $('.img-2')            , 'animate__bounceInRight');
+            scroll_animate(windowScrolTopHeight, $('.bride-home')       , 'animate__bounceInRight');
+            scroll_animate(windowScrolTopHeight, $('.groom-home')       , 'animate__bounceInLeft');
+            scroll_animate(windowScrolTopHeight, $('.contact-animate')  , 'animate__fadeInUp');
+
+            scroll_animate(windowScrolTopHeight, $('.form-animate')     , 'animate__fadeInBottomRight');
+
+        
+        }
+
+        window.onload   = scroll_animates;
+        window.onscroll = scroll_animates;
         // Get the modal
         var modal = document.getElementById("modalpopup_BankInfo");
 
         // Get the button that opens the modal
-        var btn = document.getElementById("fixed");
+        var btn = document.getElementById("bankInfo");
 
         // Get the <span> element that closes the modal
         var span = document.getElementsByClassName("close")[0];

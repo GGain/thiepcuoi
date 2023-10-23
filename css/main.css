@@ -90,8 +90,8 @@ header .header {
 header .header .header-content {
     display: grid;
     position: absolute;
-    place-items: center;
     width: 100%;
+    place-items: center;
     align-items: center;
     vertical-align: middle;
     text-align: center;
@@ -456,39 +456,44 @@ main .invite-customer .invite-frame {
 .fixed {
     position: fixed;
     bottom: 50px;
-    right: 50px;
+    left: 50px;
 }
 
-.fixed .group-fixed {
-    position: relative;
-    width: 120%;
+.align-item-middle-center {
+    /* border: 2px solid #000; */
+    width: 100%;
     cursor: pointer;
+    position: relative;
+    display: flex;
+    place-items: center;
+    justify-content: space-evenly;
 }
 
-.fixed .group-fixed .swing {
+.swing {
     position: absolute;
-    top: 41%;
-    left: 41%;
-    animation: swing ease-in-out 1s infinite alternate;
+    width: 40%;
+    height: auto;
+    
+    animation: swing ease-in-out 1s  infinite alternate;
 }
 
-.fixed .group-fixed .rotate {
+.rotate {
     width: 100%;
     height: auto;
     animation: rotation 12s infinite linear;
 }
 
 @keyframes swing {
-    0% { transform: rotate(3deg); }
-    100% { transform: rotate(-3deg); }
+    20% { transform: rotate(5deg); }
+    50% { transform: rotate(-5deg); }
 }
 
 @keyframes rotation {
     from {
-    transform: rotate(0deg);
+        transform: rotate(0deg);
     }
     to {
-    transform: rotate(359deg);
+        transform: rotate(359deg);
     }
 }
 
@@ -604,13 +609,12 @@ lottie-player {
     lottie-player {
         height: 200px;
     }
+    
     .fixed {
         bottom: 10px;
-        right: 10px;
+        left: 10px;
     }
-    .fixed .group-fixed {
-        width: 110%;
-    }
+    
     .modal-popup .modal-content {
         width: 100% !important;
         margin: 30% 0;
