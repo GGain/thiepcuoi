@@ -6168,8 +6168,8 @@
                                     <div class="ladi-form-item-container">
                                         <div class="ladi-form-item-background"></div>
                                         <div class='ladi-form-item ladi-form-checkbox ladi-form-checkbox-vertical'>
-                                            <div class="ladi-form-checkbox-item"><input tabindex="3" name="form_item60" type="radio" value="CÓ" /><span data-checked="false">CÓ</span></div>
-                                            <div class="ladi-form-checkbox-item"><input tabindex="3" name="form_item60" type="radio" value="KHÔNG" /><span data-checked="false">KHÔNG</span></div>
+                                            <div class="ladi-form-checkbox-item"><input tabindex="3" name="form_item60" type="radio" value="no" /><span data-checked="false">CÓ</span></div>
+                                            <div class="ladi-form-checkbox-item"><input tabindex="3" name="form_item60" type="radio" value="yes" /><span data-checked="false">KHÔNG</span></div>
                                         </div>
                                     </div>
                                 </div>
@@ -6621,6 +6621,31 @@
             var phone = $('#FORM_ITEM57').find('input[name=phone]').val();
             var answer = $('#FORM_ITEM60').find('input[name=form_item60]:checked').val();
             console.log(answer);
+
+
+            var jsonData = {}; // Create an empty JSON object
+            jsonData["hoten"] = name;
+            jsonData["SDT"] = phone;
+            jsonData["feedback"] = answer;
+
+            const googleWebApp = `https://script.google.com/macros/s/AKfycbwYIEEy65TakM1RMSE16SVqi92lY8GdDV2sh6KoMb51VTS8DSBikKMKNgJY7pYvwUMA/exec`;
+            jsonData[`docID`] = `1o9hIVLvWQwUaw5gxAD3Xyd9LX384RIiMBPB1zj3UcVU`;
+            jsonData[`sheetName`] = `ThanhHung`;
+
+            console.log(jsonData);
+
+            fetch(googleWebApp, {
+                    method: 'post',
+                    body: JSON.stringify(jsonData)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Response from Apps Script:', data);
+                    // Handle the response as needed
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
         })
     </script>
 </body>
