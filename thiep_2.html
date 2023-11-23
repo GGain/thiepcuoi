@@ -3283,14 +3283,13 @@
                 line-height: 1.6;
             }
             #HEADLINE149A {
-                width: 610px;
+                width: 100%;
                 top: 440.117px;
-                left: 230px;
             }
             #HEADLINE149A>.ladi-headline {
                 font-family: "Cormorant Upright", serif;
                 color: rgb(231, 206, 137);
-                font-size: 21px;
+                font-size: 2rem;
                 line-height: 1.6;
             }
             #HEADLINE150 {
@@ -3789,8 +3788,6 @@
                 background-image: url("https://w.ladicdn.com/s500x350/5d14c8e0181b0565d45f4113/layer-2-20220407145340.png");
             }
             #GROUP261 {
-                width: 508.499px;
-                height: 351.461px;
                 top: 193.676px;
                 left: 249.677px;
             }
@@ -4932,21 +4929,20 @@
                 left: 19px;
             }
             #HEADLINE149A {
-                width: 380px;
-                top: 328.159px;
-                left: 19px;
+                width: 100%;
+                top: 298px;
             }
             #HEADLINE149>.ladi-headline {
                 font-family: "Cormorant Upright", serif;
                 color: rgb(231, 206, 137);
-                font-size: 16px;
+                font-size: 1.5rem;
                 text-align: center;
                 line-height: 1.6;
             }
             #HEADLINE149A>.ladi-headline {
                 font-family: "Cormorant Upright", serif;
                 color: rgb(231, 206, 137);
-                font-size: 16px;
+                font-size: 1.5rem;
                 text-align: center;
                 line-height: 1.6;
             }
@@ -5446,10 +5442,7 @@
                 background-image: url("https://w.ladicdn.com/s500x350/5d14c8e0181b0565d45f4113/layer-2-20220407145340.png");
             }
             #GROUP261 {
-                width: 256px;
-                height: 213.5px;
                 top: 494.5px;
-                left: 91px;
             }
             #GROUP263 {
                 width: 443.059px;
@@ -5717,7 +5710,25 @@
             }
         }
         
-        .bankinfo-container {
+        .flex-container {
+            display: flex;
+        }
+        
+        .flex-container>div {
+            margin: 10px;
+            padding: 20px;
+            font-size: 30px;
+        }
+        
+        .item-center {
+            justify-content: center;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        .flex-col-container {
             display: flex;
             flex-direction: column;
             /* Change to 'row' if you want a horizontal layout */
@@ -5728,17 +5739,24 @@
             font-size: 20px;
             font-weight: bold;
             line-height: 1.6;
-            background-color: rgba(255, 255, 255, 0.8);
             margin: 5px;
             padding: 15px 15px;
         }
         
+        .bankinfo-container {
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+        
         .row {
             display: flex;
-            justify-content: center;
+            flex-direction: row;
+            /* justify-content: center; */
             /* Adjust as needed */
-            align-items: center;
+            /* align-items: center; */
             /* Adjust as needed */
+            justify-content: space-evenly;
+            width: 100%;
+            height: fit-content;
         }
         
         .BankImg {
@@ -5756,9 +5774,57 @@
             margin: 10px;
         }
         
+        #BoxTitle {
+            background-color: rgba(253, 252, 252, 0.6);
+            border-style: solid;
+            border-color: rgb(0, 0, 0);
+            border-width: 1px;
+            border-radius: 29px;
+            font-family: "Cormorant Upright", serif;
+            color: rgb(30, 70, 74);
+            font-weight: bold;
+            line-height: 1.6;
+            font-size: 2.5rem;
+        }
+        
+        #FirstLine {
+            font-size: 5rem;
+        }
+        
+        #tileLine {
+            padding: 0px;
+            width: 6px;
+            height: auto;
+            background-color: rgb(30, 70, 74);
+        }
+        
         .slideInRight {
             -webkit-animation-name: slideInRight;
             animation-name: slideInRight;
+        }
+        
+        #GROUP261 {
+            width: 100%;
+            align-items: center;
+        }
+        
+        @media (max-width: 768px) {
+            .flex-container>div {
+                margin: 5px;
+                padding: 10px;
+                font-size: 30px;
+            }
+            #BoxTitle {
+                border-radius: 29px;
+                /* font-size: 1.5rem; */
+                font-size: 20px;
+            }
+            #FirstLine {
+                font-size: 3rem;
+            }
+            #tileLine {
+                width: 3px;
+            }
         }
         
         @keyframes slideInLeft {
@@ -5811,31 +5877,22 @@
                         <div class="ladi-image-background"></div>
                     </div>
                 </div>
-                <div id="GROUP261" class='ladi-element animated'>
-                    <div class='ladi-group'>
-                        <div id="BOX120" class='ladi-element'>
-                            <div class='ladi-box'></div>
+                <div id="GROUP261" class='flex-container ladi-element animated item-center'>
+                    <div id="BoxTitle" class='item-center'>
+                        <div id="FirstLine" class='flex-container item-center'>
+                            <h3>A</h3>
+                            <div id="tileLine"></div>
+                            <h3>H</h3>
                         </div>
-                        <div id="HEADLINE2" class='ladi-element'>
-                            <h3 class='ladi-headline'>A</h3>
+
+                        <div class="text-center">
+                            <h3>CHÚNG TÔI CƯỚI</h3>
                         </div>
-                        <div id="HEADLINE3" class='ladi-element'>
-                            <h3 class='ladi-headline'>H</h3>
+                        <div class='text-center'>
+                            <h3>Nguyệt Ánh &amp; Thành Hưng</h3>
                         </div>
-                        <div id="LINE4" class='ladi-element'>
-                            <div class='ladi-line'>
-                                <div class="ladi-line-container"></div>
-                            </div>
-                        </div>
-                        <div id="HEADLINE5" class='ladi-element'>
-                            <h3 class='ladi-headline'>CHÚNG TÔI CƯỚI</h3>
-                        </div>
-                        <div id="HEADLINE6" class='ladi-element'>
-                            <h3 class='ladi-headline'>Nguyệt Ánh &amp; Thành Hưng</h3>
-                        </div>
-                        <div id="HEADLINE7" class='ladi-element'>
-                            <h3 class='ladi-headline'><span style="background-color: rgba(30, 70, 74, 0);">03 . 12 . 2023
-                        <br></span><br>
+                        <div class='text-center'>
+                            <h3><span style="background-color: rgba(30, 70, 74, 0);">03 . 12 . 2023</span><br>(21-10 Quý Mão)
                             </h3>
                         </div>
                         <div id="IMAGE252" class='ladi-element'>
@@ -5874,7 +5931,8 @@
                     <h3 class='ladi-headline'>tại địa chỉ<br></h3>
                 </div>
                 <div id="HEADLINE17" class='ladi-element'>
-                    <h3 class='ladi-headline'>Nhà Văn Hóa 5-6, Tư Đình, Long Biên, Tp Hà Nội</h3>
+                    <h3 class='ladi-headline'>Tại số 22 ngõ 38</h3>
+                    <h3 class='ladi-headline'>Nhà Văn Hóa tổ 5, Tư Đình, Long Biên, Tp Hà Nội</h3>
                 </div>
                 <div id="HEADLINE18" class='ladi-element'>
                     <h3 class='ladi-headline'>Sự hiện diện của Anh(Chị) là niềm vinh hạnh của chúng tôi!<br></h3>
@@ -6245,7 +6303,7 @@
                 <!-- <div  id="HEADLINE149" class='ladi-element'>
                 <h3 class='ladi-headline'>Thôn Đồng Tâm - Xã Quảng Trường - Huyện Quảng Xương</h3>
             </div> -->
-                <div id="HEADLINE149A" class='ladi-element'>
+                <div id="HEADLINE149A" class='ladi-element text-center'>
                     <h3 class='ladi-headline'>Tại số 22 ngõ 38</h3>
                     <h3 class='ladi-headline'>Nhà Văn Hóa tổ 5, Tư Đình, Long Biên, Tp Hà Nội</h3>
                 </div>
@@ -6302,7 +6360,7 @@
             <div class="ladi-container">
                 <div id="POPUP66" class='ladi-element'>
                     <div class='ladi-popup'>
-                        <div id="BOXBANK" class='bankinfo-container'>
+                        <div id="BOXBANK" class='flex-col-container bankinfo-container'>
                             <div class="row">
                                 <h3 class='ladi-headline'>Nguyệt Ánh - Thành Hưng chân thành cảm ơn!!</h3>
                             </div>
